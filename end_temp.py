@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Data, x and y axes
 fine = np.array([53.03, 62.79, 48.14, 56.45, 54.98, 63.77])
 control = np.array([62.3, 72.56, 69.14, 69.14, 72.07, 76.46])
-label = ["Fine", "Control"]
 
+label = ["Fine", "Control"]
 fig, ax = plt.subplots()
 ax.tick_params(labelsize=20)
+# Graphs bars
 ax.bar(
     label,
     [np.mean(fine), np.mean(control)],
@@ -20,6 +22,7 @@ ax.bar(
 )
 
 
+# Function for lines of significance
 def signif_line_draw(start, end, y, signif):
     insignificant = False
     if signif > 0.05:
@@ -40,7 +43,9 @@ def signif_line_draw(start, end, y, signif):
         ax.arrow(start, y, 0, -1)
 
 
+# Draws line of significance
 signif_line_draw(0, 1, 80, 0.0013)
+# Labels axes and grpahs points
 plt.scatter([lab for lab in label for i in range(6)], list(fine) + list(control), c="r")
 ax.set_xlabel("Crystal Type", fontsize=20)
 ax.set_ylabel("Temp C After 20 Seconds", fontsize=20)

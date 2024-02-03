@@ -43,10 +43,10 @@ ax.scatter(
     color="red",
     alpha=0.5,
 )
-print(tukey.pvalue)
 pvalues = tukey.pvalue
 
 
+# Function for lines of significance
 def signif_line_draw(start, end, y, signif):
     insignificant = False
     if signif > 0.05:
@@ -67,6 +67,7 @@ def signif_line_draw(start, end, y, signif):
         ax.arrow(start, y, 0, -1)
 
 
+# Draws lines of significance
 for i in range(1, 4):
     signif_line_draw(0, i, 221 + (i * 7), pvalues[0][i])
 for i in range(2, 4):

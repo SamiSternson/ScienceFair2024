@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import linregress
 
+# Imports data
 data1 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/fine1.csv")
 data2 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/fine2.csv")
 data3 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/fine3.csv")
@@ -15,6 +16,7 @@ data3_coarse = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/coars
 data4_coarse = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/coarse4.csv")
 data5_coarse = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/coarse5.csv")
 data6_coarse = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/Copper/coarse6.csv")
+# Converts data to list
 coarse1 = data1_coarse["Salt"].tolist()
 control1_coarse = data1_coarse["Control"].tolist()
 coarse2 = data2_coarse["Salt"].tolist()
@@ -41,6 +43,8 @@ fine6 = data6["Salt"].tolist()
 control6 = data6["Control"].tolist()
 time = data1["Time"].tolist()
 x = time * 6
+
+# Joins lists
 fine_y = fine1 + fine2 + fine3 + fine4 + fine5 + fine6
 control_y = control1 + control2 + control3 + control4 + control5 + control6
 coarse_y = coarse1 + coarse2 + coarse3 + coarse4 + coarse5 + coarse6
@@ -52,6 +56,7 @@ control_coarse_y = (
     + control5_coarse
     + control6_coarse
 )
+# Calculate linear regressions
 fine_regress = linregress(x, fine_y)
 fine_slope = fine_regress[0]
 control_regress = linregress(x, control_y)
@@ -64,12 +69,9 @@ coarse_slope = coarse_regress[0]
 control_coarse_slope = control_coarse_regress[0]
 control_coarse_y_int = control_coarse_regress[1]
 coarse_y_int = coarse_regress[1]
-print(control_regress[2])
-print(control_coarse_regress[2])
-print(fine_regress[2])
-print(coarse_regress[2])
 
 
+# Draws line (some of this function is inspired by Stack Overflow, but I customized it for my needs)
 def abline(slope, intercept, color, label):
     axes = plt.gca()
     x_vals = np.array(axes.get_xlim())

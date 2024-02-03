@@ -81,10 +81,6 @@ for i in range(len(coarse1)):
     fine = np.array([fine1[i], fine2[i], fine3[i], fine4[i], fine5[i], fine6[i]])
     fine_avg.append(np.mean(fine))
     fine_stdm.append(np.std(fine) / np.sqrt(len(fine)))
-print(fine1[-1], fine2[-1], fine3[-1], fine4[-1], fine5[-1], fine6[-1])
-print(
-    control1[-1], control2[-1], control3[-1], control4[-1], control5[-1], control6[-1]
-)
 # Initialize graph settings
 fig = plt.figure()
 ax1 = fig.add_subplot()
@@ -95,6 +91,7 @@ ax1.set_xticks(np.arange(2, 22, step=2))
 ax1.tick_params(labelsize=fontsize)
 
 
+# Graphs shaded regions between Standard Deviation of the Mean
 def graph_between(x, main_y, stdm_up, stdm_down, c, label):
     ax1.plot(x, main_y, c=c, label=label)
     ax1.plot(
@@ -152,6 +149,7 @@ graph_between(
     "Fine",
 )
 
+# Labels axes
 ax1.legend(loc="upper left", fontsize=fontsize)
 ax1.set_ylabel("Temp C", fontsize=fontsize)
 ax1.set_xlabel("Time in Seconds", fontsize=fontsize)
