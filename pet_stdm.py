@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 import numpy as np
 
+# Imports data from files
 data1 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/packets/salt1.csv")
 data2 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/packets/salt2.csv")
 data3 = pd.read_csv("C:/Users/scott/Desktop/ScienceFair_2024/packets/salt3.csv")
@@ -19,21 +20,15 @@ control4 = data4["Control"].tolist()
 covered4 = data4["Covered"].tolist()
 control5 = data5["Control"].tolist()
 covered5 = data5["Covered"].tolist()
+# Agregates lists
 control = control1 + control2 + control3 + control4 + control5
 covered = covered1 + covered2 + covered3 + covered4 + covered5
-print(
-    control1[-1],
-    control2[-1],
-    control3[-1],
-    control4[-1],
-    control5[-1],
-)
-print(covered1[-1], covered2[-1], covered3[-1], covered4[-1], covered5[-1])
+
 control_avg = []
 covered_avg = []
 control_stdm = []
 covered_stdm = []
-
+# Calculates the Standard Deviation of the Mean
 for i in range(len(time)):
     control = np.array(
         [
@@ -53,12 +48,13 @@ for i in range(len(time)):
     covered_avg.append(np.mean(covered))
     covered_stdm.append(np.std(covered) / np.sqrt(len(covered)))
 
-
+# Initiates graph
 fig, ax = plt.subplots()
 plt.xlim(1, 20)
 plt.ylim(20, 55)
 
 
+# Defines function that shades regions for Standard Deviation of the Mean
 def graph_between(x, main_y, stdm_up, stdm_down, c, label):
     ax.plot(x, main_y, c=c, label=label)
     ax.plot(
@@ -82,6 +78,7 @@ def graph_between(x, main_y, stdm_up, stdm_down, c, label):
     )
 
 
+# Graph lines
 graph_between(
     time,
     control_avg,
