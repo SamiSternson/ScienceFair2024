@@ -1,3 +1,4 @@
+// Sets sensor variables
 const int pin1 = 0;
 const int pin2 = 1;
 
