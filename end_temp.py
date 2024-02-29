@@ -5,14 +5,18 @@ import numpy as np
 fine = np.array([53.03, 62.79, 48.14, 56.45, 54.98, 63.77])
 control = np.array([62.3, 72.56, 69.14, 69.14, 72.07, 76.46])
 
-label = ["Fine", "Control"]
+label = [
+    "Finely Ground Salt",
+    "Control",
+]
+x = [0, 0.2]
 fig, ax = plt.subplots()
-ax.tick_params(labelsize=20)
+ax.tick_params(labelsize=14)
 # Graphs bars
-ax.bar(
-    label,
+barlist = ax.bar(
+    x,
     [np.mean(fine), np.mean(control)],
-    0.75,
+    0.15,
     color="steelblue",
     yerr=[np.std(fine), np.std(control)],
     align="center",
@@ -20,6 +24,8 @@ ax.bar(
     ecolor="black",
     capsize=10,
 )
+barlist[-1].set_color("r")
+plt.xticks(x, label)
 
 
 # Function for lines of significance
@@ -44,9 +50,8 @@ def signif_line_draw(start, end, y, signif):
 
 
 # Draws line of significance
-signif_line_draw(0, 1, 80, 0.0013)
-# Labels axes and grpahs points
-plt.scatter([lab for lab in label for i in range(6)], list(fine) + list(control), c="r")
-ax.set_xlabel("Crystal Type", fontsize=20)
-ax.set_ylabel("Temp C After 20 Seconds", fontsize=20)
+signif_line_draw(0, 0.2, 79, 0.0013)
+# Labels axes and graphs points
+plt.scatter([lab for lab in x for i in range(6)], list(fine) + list(control), c="g")
+ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=18)
 plt.show()

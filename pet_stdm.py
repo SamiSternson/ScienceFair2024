@@ -28,6 +28,9 @@ control_avg = []
 covered_avg = []
 control_stdm = []
 covered_stdm = []
+control_slope = linregress(time * 5, control)
+covered_slope = linregress(time * 5, covered)
+print(control_slope, covered_slope)
 # Calculates the Standard Deviation of the Mean
 for i in range(len(time)):
     control = np.array(
@@ -52,6 +55,13 @@ for i in range(len(time)):
 fig, ax = plt.subplots()
 plt.xlim(1, 20)
 plt.ylim(20, 55)
+
+
+def abline(slope, intercept, color, linestyle):
+    axes = plt.gca()
+    x_vals = np.array(axes.get_xlim())
+    y_vals = intercept + slope * x_vals
+    plt.plot(x_vals, y_vals, color=color, alpha=1, linestyle=linestyle)
 
 
 # Defines function that shades regions for Standard Deviation of the Mean
@@ -93,9 +103,9 @@ graph_between(
     [covered_avg[i] + covered_stdm[i] for i in range(len(covered_avg))],
     [covered_avg[i] - covered_stdm[i] for i in range(len(covered_avg))],
     "b",
-    "Covered",
+    "Finely ground crystals encased in PET",
 )
-fontsize = 20
+fontsize = 16
 ax.set_xticks(np.arange(2, 22, step=2))
 ax.tick_params(labelsize=fontsize)
 ax.plot(
@@ -108,7 +118,9 @@ ax.plot(
     covered_avg,
     "b",
 )
-ax.legend(loc="upper left", fontsize=fontsize)
+abline(control_slope[0], control_slope[1], "r", "--")
+abline(covered_slope[0], covered_slope[1], "b", "--")
+ax.legend(loc="upper left", fontsize=fontsize - 4)
 ax.set_xlabel("Time in Seconds", fontsize=fontsize)
-ax.set_ylabel("Temp in C", fontsize=fontsize)
+ax.set_ylabel("Temp (C°)", fontsize=fontsize)
 plt.show()

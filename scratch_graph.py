@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 from scipy import stats
 
-x = ["Smooth", "320", "120", "60"]
+labels = ["Smooth\nCrystals", "320\nScratched", "120\nScratched", "60\nScratched"]
+x = [0, 0.2, 0.4, 0.6]
 average = [54.75, 77.25, 84.5, 81.75]
 std = [10.89437928, 5.629165125, 4.716990566, 2.861380786]
 smooth = [
@@ -30,11 +31,11 @@ s_60 = [
 ]
 y_points = [smooth, s_320, s_120, s_60]
 x_points = []
-for name in x:
+for name in labels:
     for i in range(4):
         x_points.append(name)
 fig, ax = plt.subplots()
-fontsize = 20
+fontsize = 14
 ax.set_ylabel("Pixel Brightness", fontsize=fontsize)
 ax.set_xlabel("Salt Types", fontsize=fontsize)
 ax.tick_params(labelsize=fontsize)
@@ -66,6 +67,7 @@ def signif_line_draw(start, end, y, signif):
 ax.bar(
     x,
     average,
+    width=0.15,
     color="steelblue",
     yerr=std,
     align="center",
@@ -80,10 +82,10 @@ ax.scatter(
     alpha=0.5,
 )
 for i in range(1, 4):
-    signif_line_draw(0, i, 100 + (i * 7), pvalues[0][i])
+    signif_line_draw(0, i * 0.2, 100 + (i * 7), pvalues[0][i])
 for i in range(2, 4):
-    signif_line_draw(1, i, 90 + (i * 7), pvalues[1][i])
-signif_line_draw(2, 3, 80, pvalues[2][-1])
-ax.set_ylabel("Pixel Brightness")
-ax.set_xlabel("Sandpaper Grit")
+    signif_line_draw(1, i * 0.2, 90 + (i * 7), pvalues[1][i])
+signif_line_draw(2, 0.6, 80, pvalues[2][-1])
+plt.xticks(x, labels)
+ax.set_ylabel("Mean Pixel Brightness Indicating Reflectance")
 plt.show()

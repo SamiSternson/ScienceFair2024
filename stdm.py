@@ -86,7 +86,7 @@ fig = plt.figure()
 ax1 = fig.add_subplot()
 plt.xlim(1, 20)
 plt.ylim(20, 80)
-fontsize = 20
+fontsize = 16
 ax1.set_xticks(np.arange(2, 22, step=2))
 ax1.tick_params(labelsize=fontsize)
 
@@ -115,42 +115,77 @@ def graph_between(x, main_y, stdm_up, stdm_down, c, label):
     )
 
 
+def abline(slope, intercept, color, linestyle):
+    axes = plt.gca()
+    x_vals = np.array(axes.get_xlim())
+    y_vals = intercept + slope * x_vals
+    plt.plot(x_vals, y_vals, color=color, alpha=1, linestyle=linestyle)
+
+
+fine_y = fine1 + fine2 + fine3 + fine4 + fine5 + fine6
+control_y = control1 + control2 + control3 + control4 + control5 + control6
+coarse_y = coarse1 + coarse2 + coarse3 + coarse4 + coarse5 + coarse6
+control_coarse_y = (
+    control1_coarse
+    + control2_coarse
+    + control3_coarse
+    + control4_coarse
+    + control5_coarse
+    + control6_coarse
+)
+# Calculate linear regressions
+fine_regress = linregress(time * 6, fine_y)
+fine_slope = fine_regress[0]
+control_regress = linregress(time * 6, control_y)
+control_slope = control_regress[0]
+control_y_int = control_regress[1]
+fine_y_int = fine_regress[1]
+coarse_regress = linregress(time * 6, coarse_y)
+control_coarse_regress = linregress(time * 6, control_coarse_y)
+coarse_slope = coarse_regress[0]
+control_coarse_slope = control_coarse_regress[0]
+control_coarse_y_int = control_coarse_regress[1]
+coarse_y_int = coarse_regress[1]
+
 # Graph lines
 graph_between(
     time,
     fine_control_avg,
     [point + fine_control_stdm[i] for i, point in enumerate(fine_control_avg)],
     [point - fine_control_stdm[i] for i, point in enumerate(fine_control_avg)],
-    "g",
-    "Fine Control ",
+    "y",
+    "Control1",
 )
 graph_between(
     time,
     coarse_control_avg,
     [point + coarse_control_stdm[i] for i, point in enumerate(coarse_control_avg)],
     [point - coarse_control_stdm[i] for i, point in enumerate(coarse_control_avg)],
-    "b",
-    "Coarse Sea Salt Control ",
+    "r",
+    "Control2",
 )
 graph_between(
     time,
     coarse_avg,
     [point + coarse_stdm[i] for i, point in enumerate(coarse_avg)],
     [point - coarse_stdm[i] for i, point in enumerate(coarse_avg)],
-    "y",
-    "Coarse Sea Salt ",
+    "g",
+    "Coarse sea salt",
 )
 graph_between(
     time,
     fine_avg,
     [point + fine_stdm[i] for i, point in enumerate(fine_avg)],
     [point - fine_stdm[i] for i, point in enumerate(fine_avg)],
-    "r",
-    "Fine",
+    "b",
+    "Finely ground crystals",
 )
-
+abline(fine_slope, fine_y_int, "b", "--")
+abline(coarse_slope, coarse_y_int, "g", "--")
+abline(control_slope, control_y_int, "y", "--")
+abline(control_coarse_slope, control_coarse_y_int, "r", "--")
 # Labels axes
-ax1.legend(loc="upper left", fontsize=fontsize)
-ax1.set_ylabel("Temp C", fontsize=fontsize)
+ax1.legend(loc="upper left", fontsize=fontsize - 4)
+ax1.set_ylabel("Temp (C°)", fontsize=fontsize)
 ax1.set_xlabel("Time in Seconds", fontsize=fontsize)
 plt.show()

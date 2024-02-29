@@ -2,28 +2,30 @@ import matplotlib.pyplot as plt
 from scipy import stats
 
 # Turning the data into variables
-labels = ["Fine", "Table Salt", "Coarse Sea Salt", "Background"]
-averages = [210, 182.6, 146.4, 77.6]
-std = [4.8, 6.1, 8.6, 4.6]
+labels = ["Finely ground\ncrystals", "Table\nsalt", "Coarse\nsea salt"]
+averages = [210, 182.6, 146.4]
+std = [4.8, 6.1, 8.6]
 fine = [204, 208, 211, 217, 208]
 medium = [176, 181, 178, 188, 190]
 coarse = [143, 143, 158, 152, 136]
-background = [70, 80, 82, 79, 77]
 data_points_y = [
     fine,
     medium,
     coarse,
-    background,
 ]
 width = 0.75
 fig, ax = plt.subplots()
-fontsize = 20
+fontsize = 14
 # Labeling Axes
-ax.set_ylabel("Pixel Brightness", fontsize=fontsize)
+ax.set_ylabel("Mean Pixel Brightness Indicating Reflectance", fontsize=fontsize)
 ax.set_xlabel("Crystal Types", fontsize=fontsize)
 ax.tick_params(labelsize=fontsize)
 # Tuckey HSD test
-tukey = stats.tukey_hsd(fine, medium, coarse, background)
+tukey = stats.tukey_hsd(
+    fine,
+    medium,
+    coarse,
+)
 # Creating Bar Graph
 ax.bar(
     labels,
@@ -68,9 +70,9 @@ def signif_line_draw(start, end, y, signif):
 
 
 # Draws lines of significance
-for i in range(1, 4):
-    signif_line_draw(0, i, 221 + (i * 7), pvalues[0][i])
-for i in range(2, 4):
-    signif_line_draw(1, i, 200 + (i * 7), pvalues[1][i])
+for i in range(1, 3):
+    signif_line_draw(0, i, 220 + (i * 12), pvalues[0][i])
+for i in range(2, 3):
+    signif_line_draw(1, i, 210 + (i * 7), pvalues[1][i])
 signif_line_draw(2, 3, 180, pvalues[2][-1])
 plt.show()
