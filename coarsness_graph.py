@@ -75,4 +75,5 @@ for i in range(1, 3):
 for i in range(2, 3):
     signif_line_draw(1, i, 210 + (i * 7), pvalues[1][i])
 signif_line_draw(2, 3, 180, pvalues[2][-1])
+plt.title("IR Reflectance of Different Particle Size NaCl Crystals", fontsize=12)
 plt.show()

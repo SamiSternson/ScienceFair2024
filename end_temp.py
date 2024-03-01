@@ -55,7 +55,7 @@ signif_line_draw(0, 0.2, 79, 0.0013)
 plt.scatter([lab for lab in x for i in range(6)], list(fine) + list(control), c="g")
 ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=18)
 plt.title(
-    "Average Temperature of Copper Plates Covered with NaCl crystals\nencased in PET plastic after 20 Seconds of heating with IR heat lamp.",
+    "Passive Cooling Effects of NaCl Crystals on Copper Plates\nAfter 20 Seconds of Heating",
     fontsize=12,
 )
 plt.show()

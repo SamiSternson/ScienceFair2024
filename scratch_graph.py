@@ -41,7 +41,6 @@ ax.set_xlabel("Salt Types", fontsize=fontsize)
 ax.tick_params(labelsize=fontsize)
 tukey = stats.tukey_hsd(smooth, s_320, s_120, s_60)
 pvalues = tukey.pvalue
-print(pvalues)
 
 
 def signif_line_draw(start, end, y, signif):
@@ -88,4 +87,5 @@ for i in range(2, 4):
 signif_line_draw(2, 0.6, 80, pvalues[2][-1])
 plt.xticks(x, labels)
 ax.set_ylabel("Mean Pixel Brightness Indicating Reflectance")
+plt.title("IR Reflectance of Scratched NaCl Crystals", fontsize=12)
 plt.show()

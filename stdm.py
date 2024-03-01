@@ -189,7 +189,7 @@ ax1.legend(loc="upper left", fontsize=fontsize - 4)
 ax1.set_ylabel("Temp (C°)", fontsize=fontsize)
 ax1.set_xlabel("Time in Seconds", fontsize=fontsize)
 plt.title(
-    "Temperature of copper plates covered in different coarseness\nNaCl crystals during heating with IR lamp.",
+    "Passive Cooling of Copper Plates by NaCl Crystals",
     fontsize=12,
 )
 plt.show()
