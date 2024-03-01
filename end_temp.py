@@ -43,7 +43,7 @@ def signif_line_draw(start, end, y, signif):
     else:
         sig_text = "****"
     if not insignificant:
-        ax.text((end + start) / 2, y, sig_text, fontsize=20)
+        ax.text((end + start) / 2, y, sig_text, fontsize=16)
         ax.arrow(start, y, end - start, 0)
         ax.arrow(end, y, 0, -1)
         ax.arrow(start, y, 0, -1)
@@ -54,4 +54,8 @@ signif_line_draw(0, 0.2, 79, 0.0013)
 # Labels axes and graphs points
 plt.scatter([lab for lab in x for i in range(6)], list(fine) + list(control), c="g")
 ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=18)
+plt.title(
+    "Average Temperature of Copper Plates Covered with NaCl crystals\nencased in PET plastic after 20 Seconds of heating with IR heat lamp.",
+    fontsize=12,
+)
 plt.show()

@@ -123,4 +123,8 @@ abline(covered_slope[0], covered_slope[1], "b", "--")
 ax.legend(loc="upper left", fontsize=fontsize - 4)
 ax.set_xlabel("Time in Seconds", fontsize=fontsize)
 ax.set_ylabel("Temp (C°)", fontsize=fontsize)
+plt.title(
+    "Temperature of copper plates covered in finely ground NaCl crystals\nencased in PET plastic during heating with IR lamp.",
+    fontsize=12,
+)
 plt.show()

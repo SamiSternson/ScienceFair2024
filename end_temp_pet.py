@@ -11,7 +11,7 @@ label = [
 ]
 x = [0, 0.2]
 fig, ax = plt.subplots()
-ax.tick_params(labelsize=10)
+ax.tick_params(labelsize=14)
 # Graphs bars
 barlist = ax.bar(
     x,
@@ -43,7 +43,7 @@ def signif_line_draw(start, end, y, signif):
     else:
         sig_text = "****"
     if not insignificant:
-        ax.text((end + start) / 2, y, sig_text, fontsize=20)
+        ax.text((end + start) / 2, y, sig_text, fontsize=16)
         ax.arrow(start, y, end - start, 0)
         ax.arrow(end, y, 0, -1)
         ax.arrow(start, y, 0, -1)
@@ -54,4 +54,8 @@ signif_line_draw(0, 0.2, 60, 0.000249)
 # Labels axes and grpahs points
 plt.scatter([lab for lab in x for i in range(5)], list(fine) + list(control), c="g")
 ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=16)
+plt.title(
+    "Average temperature of copper plates covered with finely ground\nNaCl crystals after 20 seconds of heating with an IR lamp.",
+    fontsize=12,
+)
 plt.show()
