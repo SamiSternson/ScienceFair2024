@@ -98,7 +98,7 @@ graph_between(
     [covered_avg[i] + covered_stdm[i] for i in range(len(covered_avg))],
     [covered_avg[i] - covered_stdm[i] for i in range(len(covered_avg))],
     "b",
-    "Finely ground crystals encased in PET",
+    "Muscovite Powder",
 )
 fontsize = 16
 ax.set_xticks(np.arange(2, 22, step=2))
@@ -119,7 +119,7 @@ ax.legend(loc="upper left", fontsize=fontsize - 4)
 ax.set_xlabel("Time in Seconds", fontsize=fontsize)
 ax.set_ylabel("Temp (C°)", fontsize=fontsize)
 plt.title(
-    "Passive Cooling of Copper Plates by Mica Powder Encased in PET",
-    fontsize=12,
+    "Passive Cooling of Copper Plates by Muscovite Powder",
+    fontsize=14,
 )
 plt.show()

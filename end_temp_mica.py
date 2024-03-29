@@ -6,7 +6,7 @@ fine = np.array([37.89, 35.94, 38.38, 37.89])
 control = np.array([52.05, 54.98, 53.52, 50.1])
 
 label = [
-    "Mica Powder",
+    "Muscovite Powder",
     "Control",
 ]
 x = [0, 0.2]
@@ -24,8 +24,9 @@ barlist = ax.bar(
     ecolor="black",
     capsize=10,
 )
-plt.xticks(x, label, fontsize=10)
+plt.xticks(x, label, fontsize=16)
 barlist[-1].set_color("r")
+print(np.mean(control), np.mean(fine))
 
 
 # Function for lines of significance
@@ -50,12 +51,12 @@ def signif_line_draw(start, end, y, signif):
 
 
 # Draws line of significance
-signif_line_draw(0, 0.2, 60, 0.000249)
+signif_line_draw(0, 0.2, 60, 0.000009)
 # Labels axes and grpahs points
 plt.scatter([lab for lab in x for i in range(4)], list(fine) + list(control), c="g")
 ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=16)
 plt.title(
-    "Passive Cooling Effects of Mica Powder\non Copper Plates After 20 Seconds of Heating",
-    fontsize=12,
+    "Passive Cooling Effects of Muscovite Powder\non Copper Plates After 20 Seconds of Heating",
+    fontsize=14,
 )
 plt.show()

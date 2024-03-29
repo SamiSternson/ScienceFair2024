@@ -24,7 +24,7 @@ barlist = ax.bar(
     ecolor="black",
     capsize=10,
 )
-plt.xticks(x, label, fontsize=10)
+plt.xticks(x, label, fontsize=16)
 barlist[-1].set_color("r")
 
 
@@ -56,6 +56,6 @@ plt.scatter([lab for lab in x for i in range(5)], list(fine) + list(control), c=
 ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=16)
 plt.title(
     "Passive Cooling Effects of NaCl Crystals Encased in PET\non Copper Plates After 20 Seconds of Heating",
-    fontsize=12,
+    fontsize=14,
 )
 plt.show()
