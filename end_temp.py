@@ -6,7 +6,7 @@ fine = np.array([53.03, 62.79, 48.14, 56.45, 54.98, 63.77])
 control = np.array([62.3, 72.56, 69.14, 69.14, 72.07, 76.46])
 
 label = [
-    "Finely Ground Salt",
+    "Finely Ground Crystals",
     "Control",
 ]
 x = [0, 0.2]
@@ -43,7 +43,7 @@ def signif_line_draw(start, end, y, signif):
     else:
         sig_text = "****"
     if not insignificant:
-        ax.text((end + start) / 2, y, sig_text, fontsize=16)
+        ax.text((end + start) / 2, y, sig_text, fontsize=14)
         ax.arrow(start, y, end - start, 0)
         ax.arrow(end, y, 0, -1)
         ax.arrow(start, y, 0, -1)
@@ -53,9 +53,9 @@ def signif_line_draw(start, end, y, signif):
 signif_line_draw(0, 0.2, 79, 0.0013)
 # Labels axes and graphs points
 plt.scatter([lab for lab in x for i in range(6)], list(fine) + list(control), c="g")
-ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=18)
+ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=16)
 plt.title(
-    "Passive Cooling Effects of NaCl Crystals on Copper Plates\nAfter 20 Seconds of Heating",
+    "Passive Cooling Effects of NaCl\nCrystals on Copper Plates\nAfter 20 Seconds of Heating",
     fontsize=12,
 )
 plt.show()

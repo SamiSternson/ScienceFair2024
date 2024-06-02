@@ -11,7 +11,7 @@ label = [
 ]
 x = [0, 0.2]
 fig, ax = plt.subplots()
-ax.tick_params(labelsize=14)
+ax.tick_params(labelsize=12)
 # Graphs bars
 barlist = ax.bar(
     x,
@@ -24,7 +24,7 @@ barlist = ax.bar(
     ecolor="black",
     capsize=10,
 )
-plt.xticks(x, label, fontsize=16)
+plt.xticks(x, label, fontsize=12)
 barlist[-1].set_color("r")
 
 
@@ -43,7 +43,7 @@ def signif_line_draw(start, end, y, signif):
     else:
         sig_text = "****"
     if not insignificant:
-        ax.text((end + start) / 2, y, sig_text, fontsize=16)
+        ax.text((end + start) / 2, y, sig_text, fontsize=12)
         ax.arrow(start, y, end - start, 0)
         ax.arrow(end, y, 0, -1)
         ax.arrow(start, y, 0, -1)
@@ -53,9 +53,9 @@ def signif_line_draw(start, end, y, signif):
 signif_line_draw(0, 0.2, 60, 0.000249)
 # Labels axes and grpahs points
 plt.scatter([lab for lab in x for i in range(5)], list(fine) + list(control), c="g")
-ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=16)
+ax.set_ylabel("Temp (C°) After 20 Seconds", fontsize=12)
 plt.title(
     "Passive Cooling Effects of NaCl Crystals Encased in PET\non Copper Plates After 20 Seconds of Heating",
-    fontsize=14,
+    fontsize=12,
 )
 plt.show()

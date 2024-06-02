@@ -90,7 +90,7 @@ graph_between(
     [control_avg[i] + control_stdm[i] for i in range(len(control_avg))],
     [control_avg[i] - control_stdm[i] for i in range(len(control_avg))],
     "r",
-    "Control",
+    "Control, R-value: 0.98",
 )
 graph_between(
     time,
@@ -98,7 +98,7 @@ graph_between(
     [covered_avg[i] + covered_stdm[i] for i in range(len(covered_avg))],
     [covered_avg[i] - covered_stdm[i] for i in range(len(covered_avg))],
     "b",
-    "Muscovite Powder",
+    "Muscovite Powder, R-value: 0.97",
 )
 fontsize = 16
 ax.set_xticks(np.arange(2, 22, step=2))

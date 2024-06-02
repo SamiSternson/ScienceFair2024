@@ -13,13 +13,15 @@ data_points_y = [
     medium,
     coarse,
 ]
-width = 0.75
+width = 0.5
+plt.rcParams["figure.autolayout"] = True
 fig, ax = plt.subplots()
-fontsize = 14
+fontsize = 10
 # Labeling Axes
 ax.set_ylabel("Mean Pixel Brightness Indicating Reflectance", fontsize=fontsize)
 ax.set_xlabel("Crystal Types", fontsize=fontsize)
 ax.tick_params(labelsize=fontsize)
+
 # Tuckey HSD test
 tukey = stats.tukey_hsd(
     fine,
@@ -75,5 +77,5 @@ for i in range(1, 3):
 for i in range(2, 3):
     signif_line_draw(1, i, 210 + (i * 7), pvalues[1][i])
 signif_line_draw(2, 3, 180, pvalues[2][-1])
-plt.title("IR Reflectance of Different Particle Size NaCl Crystals", fontsize=12)
+plt.title("IR Reflectance of Different\nParticle Size NaCl Crystals", fontsize=fontsize)
 plt.show()
