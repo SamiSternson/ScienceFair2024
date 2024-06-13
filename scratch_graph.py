@@ -35,8 +35,8 @@ for name in labels:
         x_points.append(name)
 fig, ax = plt.subplots()
 fontsize = 12
-ax.set_xlabel("Salt Types", fontsize=fontsize)
-ax.set_ylabel("Mean Pixel Brightness Indicating Reflectance", fontsize=fontsize)
+ax.set_xlabel("Salt Types", fontsize=fontsize+2)
+ax.set_ylabel("Mean Pixel Brightness\nIndicating Reflectance", fontsize=fontsize+2)
 ax.tick_params(labelsize=fontsize)
 tukey = stats.tukey_hsd(smooth, s_320, s_120, s_60)
 pvalues = tukey.pvalue
